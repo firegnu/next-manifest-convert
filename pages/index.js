@@ -81,7 +81,7 @@ const modifyFields = (oldManifest) => {
     const pretty = JSON.stringify(newManifest, undefined, 2);
     document.getElementById('newmanifest').value = pretty;
   }else{
-    document.getElementById('newmanifest').value = 'Your manifest format are wrong! Please check it!';
+    document.getElementById('newmanifest').value = 'Your 2.5 Manifest format is incorrect! Please check and try again！';
   }
 }
 
