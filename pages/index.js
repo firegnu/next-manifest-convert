@@ -91,19 +91,26 @@ const handleClick = (e) =>  {
 
 function Home() {
   return (
-    <div className={utilStyles.convertcontainer}>
+    <>
+     <div>
+       <h1 className={utilStyles.headerTitle}>Convert Manifest from KaiOS2.5.4 to KaiOS3.0</h1>
+     </div>
+     <div className={utilStyles.convertcontainer}>
       <div className={utilStyles.converttextarea}>
+        <h3>2.5.4 Manifest</h3>
         <textarea className={utilStyles.convertcontent} id="orimanifest">
         </textarea>
       </div>
-      <div className={utilStyles.converBtn} onClick={handleClick}>
+      <div className={utilStyles.button} onClick={handleClick}>
         Convert
       </div>
       <div className={utilStyles.converttextarea}>
-        <textarea className={utilStyles.convertcontent} id="newmanifest">
+        <h3>3.0 Manifest</h3>
+        <textarea className={utilStyles.convertcontent} id="newmanifest" readOnly>
         </textarea>
       </div>
     </div>
+      </>
   )
 }
 
