@@ -76,7 +76,11 @@ const modifyFields = (oldManifest) => {
           newManifest['b2g_features']['core'] = true;
         }
       }
-      newManifest['b2g_features']['version'] = '2.2';
+      if('version' in oriManifest) {
+        newManifest['b2g_features']['version'] = oriManifest['version'];
+      } else {
+        newManifest['b2g_features']['version'] = '0.1';
+      }
     }
     const pretty = JSON.stringify(newManifest, undefined, 2);
     document.getElementById('newmanifest').value = pretty;
