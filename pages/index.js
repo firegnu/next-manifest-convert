@@ -1,17 +1,9 @@
+import { validateJson } from '../utils/utils';
+
 import convert from "../utils/convert";
 import validate from "../utils/validate";
 
 import utilStyles from '../styles/utils.module.css';
-
-const validateJson = (oldManifest) => {
-  if (/^[\],:{}\s]*$/.test(oldManifest.value.replace(/\\["\\\/bfnrtu]/g, '@').
-  replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-  replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 const validateFields = (oldManifest) => {
   if (validateJson(oldManifest)) {
