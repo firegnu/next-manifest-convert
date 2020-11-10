@@ -3,10 +3,18 @@ import validate from "../utils/validate";
 
 import utilStyles from '../styles/utils.module.css';
 
-const validateFields = (oldManifest) => {
+const validateJson = (oldManifest) => {
   if (/^[\],:{}\s]*$/.test(oldManifest.value.replace(/\\["\\\/bfnrtu]/g, '@').
   replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
   replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const validateFields = (oldManifest) => {
+  if (validateJson(oldManifest)) {
     const validateResults = validate(JSON.parse(oldManifest.value));
     const pretty = JSON.stringify(validateResults, undefined, 2);
     document.getElementById('newmanifest').value = pretty;
@@ -16,9 +24,7 @@ const validateFields = (oldManifest) => {
 }
 
 const convertFields = (oldManifest) => {
-  if (/^[\],:{}\s]*$/.test(oldManifest.value.replace(/\\["\\\/bfnrtu]/g, '@').
-  replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-  replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+  if (validateJson(oldManifest)) {
     const newManifest = convert(JSON.parse(oldManifest.value));
     const pretty = JSON.stringify(newManifest, undefined, 2);
     document.getElementById('newmanifest').value = pretty;
@@ -37,9 +43,7 @@ const validateManifest = (e) => {
 
 const prettyManifest = (e) => {
   const oriManifest = document.getElementById('orimanifest');
-  if (/^[\],:{}\s]*$/.test(oriManifest.value.replace(/\\["\\\/bfnrtu]/g, '@').
-  replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-  replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+  if (validateJson(oriManifest)) {
     const pretty = JSON.stringify(JSON.parse(oriManifest.value), undefined, 2);
     oriManifest.value = pretty;
   }else{
