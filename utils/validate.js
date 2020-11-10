@@ -124,7 +124,7 @@ const validateIconObj = (iconObj) => {
       }
     }
   } else {
-    error.sizes = 'manifest icons field size is required!'
+    error.sizes = 'manifest icons field size is required!';
   }
   return error;
 }
@@ -138,9 +138,13 @@ const validateIcons = (manifest, requiredErrors) => {
       let iconErrors = [];
       icons.forEach((icon) => {
         const error = validateIconObj(icon);
-        iconErrors.push(error);
+        if(Object.keys(error).length > 0) {
+          iconErrors.push(error);
+        }
       })
-      requiredErrors.icons = iconErrors;
+      if(iconErrors.length > 0) {
+        requiredErrors.icons = iconErrors;
+      }
     }
   } else {
     requiredErrors.icons = 'manifest icons field is required';
@@ -276,8 +280,10 @@ const validateOptionFields = (manifest) => {
 }
 
 export default function validate(oldManifest) {
+  const requiredFieldsError = validateRequiredFields(oldManifest);
+  const optionFieldsError = validateOptionFields(oldManifest);
   return {
-    'requiredFields': validateRequiredFields(oldManifest),
-    'optionFields': validateOptionFields(oldManifest)
+    'RequiredFields': Object.keys(requiredFieldsError).length > 0 ? requiredFieldsError : 'Required fields have no error!!!',
+    'OptionalFields': Object.keys(optionFieldsError).length > 0 ? optionFieldsError : 'Optional fields have no error!!!',
   }
 }
