@@ -47,7 +47,7 @@ function Home() {
   return (
     <>
      <div>
-       <h1 className={utilStyles.headerTitle}>Convert Manifest from KaiOS2.5.4 to KaiOS3.0</h1>
+       <h1 className={utilStyles.headerTitle}>Convert&Validate Manifest from KaiOS2.5.4 to KaiOS3.0</h1>
      </div>
      <div className={utilStyles.convertcontainer}>
       <div className={utilStyles.converttextarea}>
