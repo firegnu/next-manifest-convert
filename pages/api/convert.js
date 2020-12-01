@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 const fs = require('fs-extra');
 const os = require('os');
 
+import convert from '../../utils/convert';
+
 export const config = {
   api: {
     bodyParser: false,
@@ -28,23 +30,10 @@ export default async (req, res) => {
   }
   form.parse(req, (err, fields, files) => {
     fs.readFile(files.file.path, (err, data) => {
-      const user1 = {
-        "id": 1,
-        "name": "John Doe",
-        "age": 22
-      };
-      const data1 = JSON.stringify(user1);
-
-      const user2 = {
-        "id": 2,
-        "name": "jinxin",
-        "age": 38
-      };
-      const data2 = JSON.stringify(user2);
+      const newManifest = JSON.stringify(convert(JSON.parse(data)), undefined, 2);
       const uuid = uuidv4();
       fs.mkdirSync(`${os.tmpdir()}/${uuid}`);
-      fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-US.webmanifest`, data1);
-      fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-CH.webmanifest`, data2);
+      fs.outputFileSync(`${os.tmpdir()}/${uuid}/next.webmanifest`, newManifest);
       res.writeHead(200, { 'content-type': 'application/json' });
       res.end(JSON.stringify({ uuid: uuid, success: true }));
     });
