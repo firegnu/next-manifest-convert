@@ -10,8 +10,8 @@ module.exports = {
       "/": { page: "/" }
     }
   },
-  //assetPrefix: '',
-  assetPrefix: !debug ? '/next-manifest-convert/' : '',
+  assetPrefix: '',
+  // assetPrefix: !debug ? '/next-manifest-convert/' : '',
   webpack: (config, { dev }) => {
     // Perform customizations to webpack config
     // console.log('webpack');

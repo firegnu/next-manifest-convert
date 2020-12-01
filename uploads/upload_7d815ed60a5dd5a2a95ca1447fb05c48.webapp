@@ -1,0 +1,45 @@
+{
+  "name": "File Manager",
+  "description": "File Manager",
+  "launch_path": "/index.html",
+  "type": "certified",
+  "default_locale": "en-US",
+  "permissions": {
+    "softkey": {},
+    "storage":{},
+    "device-storage:sdcard":{ "access": "readwrite" },
+    "webapps-manage": {}
+  },
+  "theme_color": "#fbba32",
+  "locales": {
+    "en-US": {
+      "name": "File Manager",
+      "description": "Gaia File Manager"
+    }
+  },
+  "activities": {
+     "view": {
+      "filters": {
+        "type": ["file/path"]
+       },
+     "disposition": "inline",
+     "href": "/index.html"
+     },
+    "pick": {
+      "filters": {
+        "type": ["file/path"]
+       },
+      "disposition": "inline",
+      "returnValue": true,
+      "href": "/index.html#pick"
+    }
+  },
+  "icons": {
+    "56": "/style/icons/file_manager_56.png",
+    "112": "/style/icons/file_manager_112.png"
+  },
+  "chrome": {
+    "statusbar": "overlap"
+  },
+  "orientation": "default"
+}
