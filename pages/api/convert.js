@@ -12,7 +12,7 @@ const strictFileName = 'manifest.webapp';
 
 export default async (req, res) => {
   const form = new formidable.IncomingForm();
-  form.uploadDir = "./uploads";
+  form.uploadDir = "./";
   form.keepExtensions = true;
   form.onPart = (part) => {
     if (part.filename === strictFileName) {
