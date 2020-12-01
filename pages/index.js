@@ -53,7 +53,7 @@ class SimpleReactFileUpload extends React.Component {
     return (
       <div id="root">
         <form onSubmit={this.onFormSubmit}>
-          <h1>Upload your 2.5 manifest -- stage</h1>
+          <h1>Upload your 2.5 manifest</h1>
           <input type="file" onChange={this.onChange} />
           <button type="submit">Upload</button>
         </form>
