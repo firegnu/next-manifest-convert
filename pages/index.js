@@ -1,6 +1,8 @@
 import React from 'react'
 import axios, { post } from 'axios';
 
+import utilStyles from '../styles/utils.module.css';
+
 class SimpleReactFileUpload extends React.Component {
 
   constructor(props) {
@@ -13,9 +15,18 @@ class SimpleReactFileUpload extends React.Component {
     this.fileUpload = this.fileUpload.bind(this)
   }
   onFormSubmit(e){
-    e.preventDefault() // Stop form submit
+    e.preventDefault()
     this.fileUpload(this.state.file).then((response)=>{
-      console.log(response.data);
+      console.log(response.data.downloadLink);
+      const root = document.getElementById('root');
+      if(root.querySelector('a') !== null) {
+        root.removeChild(root.querySelector('a'));
+      }
+      const a = document.createElement('a');
+      a.setAttribute('id', 'manifest-download');
+      a.setAttribute('href', '/api/download');
+      a.innerHTML = 'Download convert link';
+      root.appendChild(a);
     })
   }
   onChange(e) {
@@ -30,16 +41,18 @@ class SimpleReactFileUpload extends React.Component {
         'content-type': 'multipart/form-data'
       }
     }
-    return  post(url, formData,config)
+    return post(url, formData,config);
   }
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit}>
-        <h1>Upload your 2.5 manifest</h1>
-        <input type="file" onChange={this.onChange} />
-        <button type="submit">Upload</button>
-      </form>
+      <div id="root">
+        <form onSubmit={this.onFormSubmit}>
+          <h1>Upload your 2.5 manifest</h1>
+          <input type="file" onChange={this.onChange} />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
     )
   }
 }
