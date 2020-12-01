@@ -1,6 +1,7 @@
 // Backend
 import formidable from 'formidable';
 const fs = require('fs');
+const os = require('os');
 
 export const config = {
   api: {
@@ -11,8 +12,13 @@ export const config = {
 const strictFileName = 'manifest.webapp';
 
 export default async (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.uploadDir = "./";
+  console.log('cdcdcdcdcdcd');
+  console.log(os.tmpdir());
+  const form = new formidable.IncomingForm({
+    uploadDir: os.tmpdir(),
+    keepExtensions: true
+  });
+  // form.uploadDir = "./uploads";
   form.keepExtensions = true;
   form.onPart = (part) => {
     if (part.filename === strictFileName) {
