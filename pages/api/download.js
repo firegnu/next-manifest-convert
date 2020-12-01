@@ -1,5 +1,21 @@
 // Backend
 const AdmZip = require('adm-zip');
+const os = require('os');
+const fs = require('fs');
+const path = require('path');
+
+function walk(directory, filepaths = []) {
+  const files = fs.readdirSync(directory);
+  for (let filename of files) {
+    const filepath = path.join(directory, filename);
+    if (fs.statSync(filepath).isDirectory()) {
+      walk(filepath, filepaths);
+    } else if (path.extname(filename) === '.webmanifest') {
+      filepaths.push(filepath);
+    }
+  }
+  return filepaths;
+}
 
 export const config = {
   api: {
@@ -8,9 +24,14 @@ export const config = {
 };
 
 export default async (req, res) => {
+  console.log(req.query.uuid);
   const zip = new AdmZip();
-  zip.addLocalFile('./env-config.js');
-  zip.addLocalFile('./yarn.lock');
+  const allFiles = walk(`${os.tmpdir()}/${req.query.uuid}`);
+  console.log('jinmajinmajinma');
+  console.log(allFiles);
+  allFiles.forEach(manifestFile => {
+    zip.addLocalFile(manifestFile);
+  });
   const downloadName = `manifest-convert-30.zip`;
   const data = zip.toBuffer();
   res.setHeader('Content-Type','application/zip');

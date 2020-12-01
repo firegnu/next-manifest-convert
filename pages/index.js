@@ -22,14 +22,14 @@ class SimpleReactFileUpload extends React.Component {
       alert('Wrong fileName! Must be manifest.webapp!');
     } else {
       this.fileUpload(this.state.file).then((response)=>{
-        console.log(response.data.downloadLink);
+        console.log(response.data.uuid);
         const root = document.getElementById('root');
         if(root.querySelector('a') !== null) {
           root.removeChild(root.querySelector('a'));
         }
         const a = document.createElement('a');
         a.setAttribute('id', 'manifest-download');
-        a.setAttribute('href', '/api/download');
+        a.setAttribute('href', `/api/download?uuid=${response.data.uuid}`);
         a.innerHTML = 'Download convert link';
         root.appendChild(a);
       })

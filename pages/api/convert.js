@@ -1,6 +1,7 @@
 // Backend
 import formidable from 'formidable';
-const fs = require('fs');
+import { v4 as uuidv4 } from 'uuid';
+const fs = require('fs-extra');
 const os = require('os');
 
 export const config = {
@@ -12,13 +13,10 @@ export const config = {
 const strictFileName = 'manifest.webapp';
 
 export default async (req, res) => {
-  console.log('cdcdcdcdcdcd');
-  console.log(os.tmpdir());
   const form = new formidable.IncomingForm({
     uploadDir: os.tmpdir(),
     keepExtensions: true
   });
-  // form.uploadDir = "./uploads";
   form.keepExtensions = true;
   form.onPart = (part) => {
     if (part.filename === strictFileName) {
@@ -29,12 +27,29 @@ export default async (req, res) => {
     }
   }
   form.parse(req, (err, fields, files) => {
-    console.log('ccccc');
-    console.log(files.file.path);
     fs.readFile(files.file.path, (err, data) => {
-      console.log(JSON.parse(data));
+      const user1 = {
+        "id": 1,
+        "name": "John Doe",
+        "age": 22
+      };
+      const data1 = JSON.stringify(user1);
+
+      const user2 = {
+        "id": 2,
+        "name": "jinxin",
+        "age": 38
+      };
+      const data2 = JSON.stringify(user2);
+      console.log(os.tmpdir());
+      const uuid = uuidv4();
+      console.log('jinruixinjinruixinjinruixin');
+      console.log(uuid);
+      fs.mkdirSync(`${os.tmpdir()}/${uuid}`);
+      fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-US.webmanifest`, data1);
+      fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-CH.webmanifest`, data2);
       res.writeHead(200, { 'content-type': 'application/json' });
-      res.end(JSON.stringify({ success: true }));
+      res.end(JSON.stringify({ uuid: uuid, success: true }));
     });
   });
 };
