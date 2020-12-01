@@ -41,10 +41,7 @@ export default async (req, res) => {
         "age": 38
       };
       const data2 = JSON.stringify(user2);
-      console.log(os.tmpdir());
       const uuid = uuidv4();
-      console.log('jinruixinjinruixinjinruixin');
-      console.log(uuid);
       fs.mkdirSync(`${os.tmpdir()}/${uuid}`);
       fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-US.webmanifest`, data1);
       fs.outputFileSync(`${os.tmpdir()}/${uuid}/en-CH.webmanifest`, data2);

@@ -22,7 +22,6 @@ class SimpleReactFileUpload extends React.Component {
       alert('Wrong fileName! Must be manifest.webapp!');
     } else {
       this.fileUpload(this.state.file).then((response)=>{
-        console.log(response.data.uuid);
         const root = document.getElementById('root');
         if(root.querySelector('a') !== null) {
           root.removeChild(root.querySelector('a'));

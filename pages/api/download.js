@@ -24,11 +24,8 @@ export const config = {
 };
 
 export default async (req, res) => {
-  console.log(req.query.uuid);
   const zip = new AdmZip();
   const allFiles = walk(`${os.tmpdir()}/${req.query.uuid}`);
-  console.log('jinmajinmajinma');
-  console.log(allFiles);
   allFiles.forEach(manifestFile => {
     zip.addLocalFile(manifestFile);
   });
