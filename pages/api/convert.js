@@ -21,12 +21,7 @@ export default async (req, res) => {
   });
   form.keepExtensions = true;
   form.onPart = (part) => {
-    if (part.filename === strictFileName) {
-      // console.log(part);
-      form.handlePart(part);
-    } else {
-      console.log(`${part.name} is not allowed`);
-    }
+    form.handlePart(part);
   }
   form.parse(req, (err, fields, files) => {
     fs.readFile(files.file.path, (err, data) => {
