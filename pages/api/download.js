@@ -1,7 +1,7 @@
 // Backend
 const AdmZip = require('adm-zip');
 const os = require('os');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 function walk(directory, filepaths = []) {
@@ -29,8 +29,9 @@ export default async (req, res) => {
   allFiles.forEach(manifestFile => {
     zip.addLocalFile(manifestFile);
   });
-  const downloadName = `manifest-convert-30.zip`;
+  const downloadName = `manifest-convert.zip`;
   const data = zip.toBuffer();
+  fs.removeSync(`${os.tmpdir()}/${req.query.uuid}`);
   res.setHeader('Content-Type','application/zip');
   res.setHeader('Content-Disposition',`attachment; filename=${downloadName}`);
   res.setHeader('Content-Length',data.length);
