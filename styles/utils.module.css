@@ -22,7 +22,7 @@
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -69,6 +69,55 @@
     margin: 10px;
     border-radius: 4px;
     font-size: 24px;
+}
+
+.root {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+}
+
+.inputfileBox {
+    position: relative;
+}
+
+.inputfile {
+    display: none;
+}
+
+.container {
+    display: inline-block;
+    width: 100%;
+}
+
+.fileBox {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid;
+    padding: 5px 0px 5px 5px;
+    box-sizing: border-box;
+    height: calc(2rem - 2px);
+}
+
+.fileButton {
+    background: red;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid;
+    top: 0px;
+    right: 0px;
+}
+
+.title {
+    text-align: center;
+}
+
+.form {
+    text-align: center;
 }
 
 
