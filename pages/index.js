@@ -1,10 +1,35 @@
 import React from 'react'
 import axios, { post } from 'axios';
+import clsx from 'clsx';
 
 import utilStyles from '../styles/utils.module.css';
 
-class SimpleReactFileUpload extends React.Component {
+const sections = {
+  section1: {
+    imageSrc: '/home-center/_presentation/kaios.png',
+    imageSrcSet:
+      '/home-center/_presentation/kaios.png?ratio=2 2x, img/home-center/_presentation/kaios.png?ratio=3 3x',
+    title: 'KaiOS, enable tomorrow',
+    description: (
+      <>
+        Reach millions of new users through the KaiStore, the home for apps on
+        phones powered by KaiOS.
+      </>
+    )
+  },
+  section5: {
+    imageSrc: '/home-center/_kaistore/kaistore.png',
+    title: 'KaiStore',
+    description: (
+      <>
+        KaiStore is a service channel to showcase your product and allow users
+        to install an app on their phones.
+      </>
+    )
+  }
+};
 
+class SimpleReactFileUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
@@ -52,6 +77,23 @@ class SimpleReactFileUpload extends React.Component {
 
   render() {
     return (
+      <>
+        <style jsx global>{`
+      body {
+        margin: 0px;
+      }
+    `}</style>
+      <section className={clsx(utilStyles.modularBanner, utilStyles.withBg, utilStyles.section1)}>
+        <img
+          src={sections.section1.imageSrc}
+          srcSet={sections.section1.imageSrcSet}
+          className={clsx(utilStyles.bannerImage, utilStyles.bannerImageRight)}
+        />
+        <div className={clsx(utilStyles.bannerText)}>
+          <h1>{sections.section1.title}</h1>
+          <p>{sections.section1.description} </p>
+        </div>
+      </section>
       <div id="root" className={utilStyles.root}>
         <form className={utilStyles.form} onSubmit={this.onFormSubmit}>
           <h1 className={utilStyles.title}>Manifest Convertor</h1>
@@ -67,10 +109,20 @@ class SimpleReactFileUpload extends React.Component {
           <button className={utilStyles.buttonConvert} type="submit">Upload</button>
         </form>
       </div>
+        <section className={clsx(utilStyles.modularBanner, utilStyles.withBg, utilStyles.section5)}>
+          <img
+            src={sections.section5.imageSrc}
+            srcSet={sections.section5.imageSrcSet}
+            className={clsx(utilStyles.bannerImage, utilStyles.bannerImageRight)}
+          />
+          <div className={clsx(utilStyles.bannerText)}>
+            <h1>{sections.section5.title}</h1>
+            <p>{sections.section5.description} </p>
+          </div>
+        </section>
+        </>
     )
   }
 }
-
-
 
 export default SimpleReactFileUpload
