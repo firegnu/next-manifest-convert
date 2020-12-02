@@ -29,13 +29,14 @@ class SimpleReactFileUpload extends React.Component {
         const a = document.createElement('a');
         a.setAttribute('id', 'manifest-download');
         a.setAttribute('href', `/api/download?uuid=${response.data.uuid}`);
-        a.innerHTML = 'Download convert link';
+        a.setAttribute('')
+        a.innerHTML = 'Download converted manifest';
         root.appendChild(a);
       })
     }
   }
   onChange(e) {
-    this.setState({file:e.target.files[0]})
+    this.setState({file:e.target.files[0]});
   }
   fileUpload(file){
     const url = '/api/convert';
@@ -51,7 +52,7 @@ class SimpleReactFileUpload extends React.Component {
 
   render() {
     return (
-      <div id="root">
+      <div id="root" className={utilStyles.root}>
         <form onSubmit={this.onFormSubmit}>
           <h1>Upload your 2.5 manifest  --- stage</h1>
           <input type="file" onChange={this.onChange} />
