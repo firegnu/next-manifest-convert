@@ -12,8 +12,6 @@ export const config = {
   },
 };
 
-const strictFileName = 'manifest.webapp';
-
 export default async (req, res) => {
   const form = new formidable.IncomingForm({
     uploadDir: os.tmpdir(),
@@ -25,10 +23,31 @@ export default async (req, res) => {
   }
   form.parse(req, (err, fields, files) => {
     fs.readFile(files.file.path, (err, data) => {
-      const newManifest = JSON.stringify(convert(JSON.parse(data)), undefined, 2);
+      const converted = convert(JSON.parse(data));
+      // write default locale manifest
+      const newManifest = JSON.stringify(converted.manifest, undefined, 2);
       const uuid = uuidv4();
       fs.mkdirSync(`${os.tmpdir()}/${uuid}`);
-      fs.outputFileSync(`${os.tmpdir()}/${uuid}/next.webmanifest`, newManifest);
+      fs.outputFileSync(`${os.tmpdir()}/${uuid}/manifest.${converted.manifest['lang']}.webmanifest`, newManifest);
+      // other locale manifest
+      let localesManifest = converted.manifest;
+      const locales = converted.locales;
+      for(const [key, value] of Object.entries(locales)) {
+        if(key === converted.manifest['lang']) {
+          // default lang manifest already generated
+          continue;
+        }
+        for(const [k, v] of Object.entries(value)) {
+          if(k in localesManifest) {
+            localesManifest[k] = v;
+          }
+        }
+        localesManifest['lang'] = key;
+        fs.outputFileSync(
+          `${os.tmpdir()}/${uuid}/manifest.${key}.webmanifest`,
+          JSON.stringify(localesManifest, undefined, 2)
+        );
+      }
       res.writeHead(200, { 'content-type': 'application/json' });
       res.end(JSON.stringify({ uuid: uuid, success: true }));
     });

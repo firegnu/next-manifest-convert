@@ -1,5 +1,6 @@
 export default function convertManifest(oriManifest)  {
   let newManifest = {};
+  let newManifestLocales = {};
   // the same keys and values
   const pwaFields = [
     'name',
@@ -35,6 +36,7 @@ export default function convertManifest(oriManifest)  {
     newManifest['name'] = oriManifest['locales'][defaultLocale].name;
     newManifest['description'] =
       oriManifest['locales'][defaultLocale].description;
+    newManifestLocales = oriManifest['locales'];
     delete oriManifest['locales'];
   }
 
@@ -76,5 +78,8 @@ export default function convertManifest(oriManifest)  {
       newManifest['b2g_features']['version'] = '0.1';
     }
   }
-  return newManifest;
+  return {
+    manifest: newManifest,
+    locales: newManifestLocales
+  };
 }
