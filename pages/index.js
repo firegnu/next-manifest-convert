@@ -107,17 +107,14 @@ class SimpleReactFileUpload extends React.Component {
               </label>
           </div>
           <button className={utilStyles.buttonConvert} type="submit">Upload</button>
+          <h1 className={utilStyles.title}>Instructions</h1>
+          <p>1: Select your KaiOS 2.5 manifest from your file</p>
+          <p>2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
+          <p>3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
         </form>
       </div>
         <section className={clsx(utilStyles.modularBanner, utilStyles.withBg, utilStyles.section5)}>
-          <img
-            src={sections.section5.imageSrc}
-            srcSet={sections.section5.imageSrcSet}
-            className={clsx(utilStyles.bannerImage, utilStyles.bannerImageRight)}
-          />
           <div className={clsx(utilStyles.bannerText)}>
-            <h1>{sections.section5.title}</h1>
-            <p>{sections.section5.description} </p>
           </div>
         </section>
         </>
