@@ -29,7 +29,6 @@ class SimpleReactFileUpload extends React.Component {
         const a = document.createElement('a');
         a.setAttribute('id', 'manifest-download');
         a.setAttribute('href', `/api/download?uuid=${response.data.uuid}`);
-        a.setAttribute('')
         a.innerHTML = 'Download converted manifest';
         root.appendChild(a);
       })
@@ -37,6 +36,7 @@ class SimpleReactFileUpload extends React.Component {
   }
   onChange(e) {
     this.setState({file:e.target.files[0]});
+    document.getElementById("file-name").innerHTML = e.target.files[0].name;
   }
   fileUpload(file){
     const url = '/api/convert';
@@ -53,10 +53,18 @@ class SimpleReactFileUpload extends React.Component {
   render() {
     return (
       <div id="root" className={utilStyles.root}>
-        <form onSubmit={this.onFormSubmit}>
-          <h1>Upload your 2.5 manifest  --- stage</h1>
-          <input type="file" onChange={this.onChange} />
-          <button type="submit">Upload</button>
+        <form className={utilStyles.form} onSubmit={this.onFormSubmit}>
+          <h1 className={utilStyles.title}>Manifest Convertor</h1>
+          <div className={utilStyles.inputfileBox}>
+            <input type="file" id="file" className={utilStyles.inputfile} onChange={this.onChange} />
+              <label htmlFor="file">
+                <span id="file-name" className={utilStyles.fileBox}/>
+                <span className={utilStyles.fileButton}>
+                 Select File
+               </span>
+              </label>
+          </div>
+          <button className={utilStyles.buttonConvert} type="submit">Upload</button>
         </form>
       </div>
     )
