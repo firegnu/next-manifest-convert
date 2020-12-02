@@ -19,23 +19,10 @@
 }
 
 .buttonConvert {
-    background-color: #4CAF50; /* Green */
+    background-color: #6f02b5; /* Green */
     border: none;
     color: white;
     padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 10px;
-    border-radius: 4px;
-    font-size: 24px;
-}
-
-.buttonValidate {
-    background-color: #CF372B; /* Red */
-    border: none;
-    color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -58,22 +45,9 @@
     flex-direction: row;
 }
 
-.buttonPretty {
-    background-color: #267ce6; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 10px;
-    border-radius: 4px;
-    font-size: 24px;
-}
-
 .root {
     position: fixed;
-    top: 50%;
+    top: calc(50% + 80px);
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -104,7 +78,6 @@
 }
 
 .fileButton {
-    background: red;
     padding: 5px;
     position: absolute;
     border: 1px solid;
@@ -119,5 +92,149 @@
 .form {
     text-align: center;
 }
+
+.modularBanner {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.modularBanner.withBg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section1 {
+    background-image: url(/home-center/_presentation/banner.jpg)
+}
+
+.section5 {
+    background-image: url(/home-center/_kaistore/banner.jpg);
+    position: absolute;
+    bottom: 0px;
+}
+
+.section1 img {
+    width: 191px;
+    height: 193px;
+}
+
+.section5 img {
+    width: 271px;
+    height: 51px;
+}
+
+.bannerText {
+    padding: 20px;
+    font-weight: 600;
+    max-width: 50%;
+}
+
+.bannerText p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.modularBanner.withBg .bannerText,
+.modularBanner.withBg .bannerText h1 {
+    color: #fff;
+}
+
+.bannerImage {
+    margin: auto;
+    max-height: 100%;
+}
+
+.bannerImageLeft {
+    order: 1;
+}
+
+.bannerImageLeft~.bannerText {
+    order: 2;
+    text-align: right;
+}
+
+.bannerImageRight {
+    order: 2;
+}
+
+.bannerImage-right~.bannerText {
+    order: 1;
+}
+
+.bannerImageBottom {
+    position: relative;
+    bottom: -50px;
+}
+
+.bannerImageCenter {
+    position: relative;
+    bottom: 0;
+}
+
+.bannerButton {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: #fff;
+    letter-spacing: -0.3px;
+    background-color: #6f02b5;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25);
+    padding: 16px 66px;
+    border-radius: 29px;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+.bannerButton:focus {
+    background-color: #500088;
+    color: #999;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modularText {
+    padding: 50px;
+}
+
+.modularText h1,
+.modularText p {
+    padding: 0 20px;
+}
+
+.modularText p {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 959px) and (min-width: 640px) {
+    .banner-text {
+        padding: 12px;
+    }
+}
+
+.aButton {
+    background-color: #6f02b5; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 4px;
+    font-size: 24px;
+}
+
+.pTitle {
+    text-align: left;
+}
+
 
 
