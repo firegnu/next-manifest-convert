@@ -47,12 +47,13 @@ class SimpleReactFileUpload extends React.Component {
       alert('Wrong fileName! Must be manifest.webapp!');
     } else {
       this.fileUpload(this.state.file).then((response)=>{
-        const root = document.getElementById('root');
+        const root = document.getElementById('convertButton');
         if(root.querySelector('a') !== null) {
           root.removeChild(root.querySelector('a'));
         }
         const a = document.createElement('a');
         a.setAttribute('id', 'manifest-download');
+        a.setAttribute('class', utilStyles.aButton);
         a.setAttribute('href', `/api/download?uuid=${response.data.uuid}`);
         a.innerHTML = 'Download converted manifest';
         root.appendChild(a);
@@ -106,7 +107,7 @@ class SimpleReactFileUpload extends React.Component {
                </span>
               </label>
           </div>
-          <button className={utilStyles.buttonConvert} type="submit">Upload</button>
+          <div id="convertButton"><button className={utilStyles.buttonConvert} type="submit">Upload</button></div>
           <h1 className={utilStyles.title}>Instructions</h1>
           <p>1: Select your KaiOS 2.5 manifest from your file</p>
           <p>2: Click "Upload" to upload your KaiOS 2.5 manifest</p>

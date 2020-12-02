@@ -219,5 +219,18 @@
     }
 }
 
+.aButton {
+    background-color: #6f02b5; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 4px;
+    font-size: 24px;
+}
+
 
 
