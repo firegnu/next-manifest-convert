@@ -55,7 +55,7 @@ class SimpleReactFileUpload extends React.Component {
         a.setAttribute('id', 'manifest-download');
         a.setAttribute('class', utilStyles.aButton);
         a.setAttribute('href', `/api/download?uuid=${response.data.uuid}`);
-        a.innerHTML = 'Download converted manifest';
+        a.innerHTML = 'Downloaded Converted Manifest';
         root.appendChild(a);
       })
     }
@@ -108,10 +108,10 @@ class SimpleReactFileUpload extends React.Component {
               </label>
           </div>
           <div id="convertButton"><button className={utilStyles.buttonConvert} type="submit">Upload</button></div>
-          <h1 className={utilStyles.title}>Instructions</h1>
-          <p>1: Select your KaiOS 2.5 manifest from your file</p>
-          <p>2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
-          <p>3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
+          <h1 className={utilStyles.pTitle}>Instructions</h1>
+          <p className={utilStyles.pTitle}>1: Select your KaiOS 2.5 manifest from your file</p>
+          <p className={utilStyles.pTitle}>2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
+          <p className={utilStyles.pTitle}>3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
         </form>
       </div>
         <section className={clsx(utilStyles.modularBanner, utilStyles.withBg, utilStyles.section5)}>
