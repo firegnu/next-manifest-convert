@@ -33,9 +33,14 @@ export default function convertManifest(oriManifest)  {
 
   // transfer name and description fields of default locale and remove locales
   if ('locales' in oriManifest) {
-    newManifest['name'] = oriManifest['locales'][defaultLocale].name;
-    newManifest['description'] =
-      oriManifest['locales'][defaultLocale].description;
+    if(defaultLocale in oriManifest['locales']) {
+      newManifest['name'] = oriManifest['locales'][defaultLocale].name;
+      newManifest['description'] =
+        oriManifest['locales'][defaultLocale].description;
+    } else {
+      newManifest['name'] = oriManifest['name'];
+      newManifest['description'] = oriManifest['description'];
+    }
     newManifestLocales = oriManifest['locales'];
     delete oriManifest['locales'];
   }
