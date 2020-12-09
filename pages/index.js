@@ -29,6 +29,10 @@ const sections = {
   }
 };
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 class SimpleReactFileUpload extends React.Component {
   constructor(props) {
     super(props);
@@ -46,11 +50,12 @@ class SimpleReactFileUpload extends React.Component {
     if(file.name !== this.strictFileName) {
       alert('Wrong fileName! Must be manifest.webapp!');
     } else {
-      this.fileUpload(this.state.file).then((response)=>{
+      this.fileUpload(this.state.file).then(async (response)=>{
         const root = document.getElementById('convertButton');
         if(root.querySelector('a') !== null) {
           root.removeChild(root.querySelector('a'));
         }
+        await sleep(1000);
         const a = document.createElement('a');
         a.setAttribute('id', 'manifest-download');
         a.setAttribute('class', utilStyles.aButton);
