@@ -63,7 +63,7 @@ class SimpleReactFileUpload extends React.Component {
             <div className="group mb-6 border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent ...">
               <p className="text-6xl text-black">Manifest Convertor</p>
             </div>
-            <div className="flex w-full items-center justify-center bg-grey-lighter">
+            <div className="flex w-full items-center justify-center bg-grey-lighter mt-8">
               <label
                 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
                 <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
