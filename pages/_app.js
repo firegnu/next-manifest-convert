@@ -57,6 +57,10 @@ class SimpleReactFileUpload extends React.Component {
 
   render() {
     return (
+      <div>
+      <header className="fixed bg-purple-800 shadow-md z-50 w-full px-5 py-2 flex justify-between items-center">
+        <img className="h-24 w-24" src="/logo.svg" alt="convert usage" />
+      </header>
         <div id="root" className="flex h-screen">
           <form className="text-center m-auto" onSubmit={this.onFormSubmit}>
             <div className="group mb-6 border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent ...">
@@ -78,18 +82,25 @@ class SimpleReactFileUpload extends React.Component {
                 Upload
               </button>
             </div>
-            <div className="p-6 max-w-xl mx-auto bg-gray-100 rounded-xl shadow-md flex items-center space-x-4">
+            <div className="p-6 max-w-xl mx-auto bg-green-200 rounded-xl shadow-md flex items-center space-x-4">
               <div className="flex-shrink-0">
-                <img className="h-24 w-24" src="/logo.svg" alt="convert usage" />
+                <img className="h-24 w-24" src="/logo_2.svg" alt="convert usage" />
               </div>
               <div>
                 <div className="text-xl font-medium text-black">USAGE</div>
-                <p className="text-gray-500">1: Select your KaiOS 2.5 manifest from your file</p>
-                <p className="text-gray-500">2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
-                <p className="text-gray-500">3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
+                <p className="text-gray-900">1: Select your KaiOS 2.5 manifest from your file</p>
+                <p className="text-gray-900">2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
+                <p className="text-gray-900">3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
               </div>
             </div>
           </form>
+        </div>
+        <footer className="bottom-0 fixed bg-gray-300 shadow-md z-50 w-full px-5 py-2 flex items-center">
+          <a className="mr-4" href="https://www.kaiostech.com/terms-of-service/">Terms of Service</a>
+          <a className="mr-4" href="https://www.kaiostech.com/privacy-policy/">Privacy Policy</a>
+          <a className="mr-4" href="https://www.kaiostech.com/sub-agreement/">Submission Agreement</a>
+          <span className="copy">All right reserved © KaiOS 2018 - 2020.</span>
+        </footer>
         </div>
     )
   }
