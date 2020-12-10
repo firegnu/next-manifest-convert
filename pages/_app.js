@@ -63,7 +63,7 @@ class SimpleReactFileUpload extends React.Component {
       </header>
         <div id="root" className="flex h-screen">
           <form className="text-center m-auto" onSubmit={this.onFormSubmit}>
-            <div className="group mb-6 border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent ...">
+            <div className="group mb-6 border-indigo-500 hover:bg-white">
               <p className="text-6xl text-black font-extrabold">Manifest Convertor</p>
             </div>
             <div className="flex w-full items-center justify-center bg-grey-lighter mt-8">
