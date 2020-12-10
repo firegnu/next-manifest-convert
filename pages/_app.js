@@ -1,6 +1,5 @@
 import React from 'react'
 import axios, { post } from 'axios';
-import clsx from 'clsx';
 
 import '../styles/globals.css';
 
