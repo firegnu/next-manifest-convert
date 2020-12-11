@@ -1,8 +1,10 @@
 import React from 'react'
-import axios, { post } from 'axios';
+import axios, {post} from 'axios';
 
 import Header from '../Components/header';
 import Footer from '../Components/footer';
+import Title from '../Components/title';
+import Usage from '../Components/usage';
 
 import '../styles/globals.css';
 
@@ -13,23 +15,24 @@ function sleep(ms) {
 class SimpleReactFileUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
-      file:null
+    this.state = {
+      file: null
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.fileUpload = this.fileUpload.bind(this);
     this.strictFileName = 'manifest.webapp';
   }
-  onFormSubmit(e){
+
+  onFormSubmit(e) {
     e.preventDefault();
-    const { file } = this.state;
-    if(file.name !== this.strictFileName) {
+    const {file} = this.state;
+    if (file.name !== this.strictFileName) {
       alert('Wrong fileName! Must be manifest.webapp!');
     } else {
-      this.fileUpload(this.state.file).then(async (response)=>{
+      this.fileUpload(this.state.file).then(async (response) => {
         const root = document.getElementById('convertButton');
-        if(root.querySelector('a') !== null) {
+        if (root.querySelector('a') !== null) {
           root.removeChild(root.querySelector('a'));
         }
         await sleep(1000);
@@ -42,11 +45,13 @@ class SimpleReactFileUpload extends React.Component {
       })
     }
   }
+
   onChange(e) {
-    this.setState({file:e.target.files[0]});
+    this.setState({file: e.target.files[0]});
     document.getElementById("file-name").innerHTML = e.target.files[0].name;
   }
-  fileUpload(file){
+
+  fileUpload(file) {
     const url = '/api/convert';
     const formData = new FormData();
     formData.append('file', file);
@@ -55,18 +60,16 @@ class SimpleReactFileUpload extends React.Component {
         'content-type': 'multipart/form-data'
       }
     }
-    return post(url, formData,config);
+    return post(url, formData, config);
   }
 
   render() {
     return (
       <div>
-      <Header />
+        <Header/>
         <div id="root" className="flex h-screen">
           <form className="text-center m-auto" onSubmit={this.onFormSubmit}>
-            <div className="group mb-6 border-indigo-500 hover:bg-white">
-              <p className="text-6xl text-black font-extrabold">Manifest Convertor</p>
-            </div>
+            <Title/>
             <div className="flex w-full items-center justify-center bg-grey-lighter mt-8">
               <label
                 className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
@@ -75,34 +78,21 @@ class SimpleReactFileUpload extends React.Component {
                     d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
                 </svg>
                 <span id="file-name" className="mt-2 text-base leading-normal">Select a file</span>
-                <input type='file' id="file" className="hidden" onChange={this.onChange} />
+                <input type='file' id="file" className="hidden" onChange={this.onChange}/>
               </label>
             </div>
             <div className="py-8" id="convertButton">
-              <button className="px-4 py-1 mr-4 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" type="submit">
+              <button
+                className="px-4 py-1 mr-4 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                type="submit">
                 Upload
               </button>
             </div>
-            <div className="p-6 max-w-xl mx-auto bg-green-200 rounded-xl shadow-md flex items-center space-x-4">
-              <div className="flex-shrink-0">
-                <img className="h-24 w-24" src="/logo_2.svg" alt="convert usage" />
-              </div>
-              <div>
-                <div className="text-xl font-medium text-black">USAGE</div>
-                <p className="text-gray-900">1: Select your KaiOS 2.5 manifest from your file</p>
-                <p className="text-gray-900">2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
-                <p className="text-gray-900">3: Click "Download converted manifest" to download your manifest in KaiOS 3.0 manifest format</p>
-              </div>
-            </div>
+            <Usage/>
           </form>
         </div>
-        <footer className="bottom-0 fixed bg-gray-300 shadow-md z-50 w-full px-5 py-2 flex items-center">
-          <a className="mr-4" href="https://www.kaiostech.com/terms-of-service/">Terms of Service</a>
-          <a className="mr-4" href="https://www.kaiostech.com/privacy-policy/">Privacy Policy</a>
-          <a className="mr-4" href="https://www.kaiostech.com/sub-agreement/">Submission Agreement</a>
-          <span className="copy">All right reserved © KaiOS 2018 - 2020.</span>
-        </footer>
-        </div>
+        <Footer/>
+      </div>
     )
   }
 }
