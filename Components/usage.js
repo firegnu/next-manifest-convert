@@ -8,10 +8,12 @@ function Usage() {
       </div>
       <div>
         <div className="text-xl font-medium text-black">USAGE</div>
-        <p className="text-gray-900">1: Select your KaiOS 2.5 manifest from your file</p>
-        <p className="text-gray-900">2: Click "Upload" to upload your KaiOS 2.5 manifest</p>
-        <p className="text-gray-900">3: Click "Download converted manifest" to download your manifest in KaiOS 3.0
-          manifest format</p>
+        <p className="text-gray-900 text-left">1: Select your KaiOS 2.5 manifest from your folder.</p>
+        <p className="text-gray-900 text-left">2: Click "Upload" to upload your KaiOS 2.5 manifest.</p>
+        <p className="text-gray-900 text-left">3: Click "Download converted manifest" to download your manifest in KaiOS 3.0
+          manifest format.</p>
+        <p className="text-gray-900 text-left">4: Unzip converted 3.0 manifest zip file.</p>
+        <p className="text-gray-900 text-left">5: Replace 2.5 manifest from your folder with all 3.0 manifest(s).</p>
       </div>
     </div>
   )
