@@ -28,7 +28,7 @@ export default async (req, res) => {
       const newManifest = JSON.stringify(converted.manifest, undefined, 2);
       const uuid = uuidv4();
       fs.mkdirSync(`${os.tmpdir()}/${uuid}`);
-      fs.outputFileSync(`${os.tmpdir()}/${uuid}/manifest.${converted.manifest['lang']}.webmanifest`, newManifest);
+      fs.outputFileSync(`${os.tmpdir()}/${uuid}/manifest.webmanifest`, newManifest);
       // other locale manifest
       let localesManifest = converted.manifest;
       const locales = converted.locales;
