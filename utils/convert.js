@@ -68,6 +68,13 @@ export default function convertManifest(oriManifest)  {
     newManifest['icons'] = iconsResult;
     delete oriManifest['icons'];
   }
+  if('fullscreen' in oriManifest) {
+    const fullscreen = oriManifest['fullscreen'];
+    if(fullscreen === true) {
+      newManifest['display'] = 'fullscreen';
+      delete oriManifest['fullscreen'];
+    }
+  }
   if(Object.keys(oriManifest).length > 0) {
     newManifest['b2g_features'] = oriManifest;
     // add core property and version to manifest b2g_features item
