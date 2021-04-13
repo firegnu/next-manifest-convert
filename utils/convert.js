@@ -51,6 +51,16 @@ export default function convertManifest(oriManifest)  {
     newManifest['start_url'] = oriManifest['launch_path'];
     delete oriManifest['launch_path'];
   }
+  // start_url. 2.5.4 also support start_url
+  if ('start_url' in oriManifest) {
+    newManifest['start_url'] = oriManifest['start_url'];
+    delete oriManifest['start_url'];
+  }
+  // theme. 2.5.4 also support 'theme'
+  if('theme' in oriManifest) {
+    newManifest['theme_color'] = oriManifest['theme'];
+    delete oriManifest['theme'];
+  }
   // icons
   if ('icons' in oriManifest) {
     const iconsObj = oriManifest['icons'];

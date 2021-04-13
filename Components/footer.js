@@ -6,7 +6,7 @@ function Footer() {
       <a className="mr-4" href="https://www.kaiostech.com/terms-of-service/">Terms of Service</a>
       <a className="mr-4" href="https://www.kaiostech.com/privacy-policy/">Privacy Policy</a>
       <a className="mr-4" href="https://www.kaiostech.com/sub-agreement/">Submission Agreement</a>
-      <span className="copy">All right reserved © KaiOS 2018 - 2020.</span>
+      <span className="copy">All right reserved © KaiOS 2018 - 2021.</span>
     </footer>
   )
 }
