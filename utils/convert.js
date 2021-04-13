@@ -101,6 +101,10 @@ export default function convertManifest(oriManifest)  {
       newManifest['b2g_features']['version'] = '0.1';
     }
   }
+  // finally add 'focus' color in next manifest
+  if('theme_color' in newManifest) {
+    newManifest['b2g_features']['focus_color'] = newManifest['theme_color'];
+  }
   return {
     manifest: newManifest,
     locales: newManifestLocales
